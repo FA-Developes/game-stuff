@@ -1,5 +1,6 @@
 import {htmlToElement, ObjectMap} from "../Utils";
 
+import {addTooltip} from "./Tooltip";
 const Skills: ObjectMap<SkillSetting> = {
   strength: {
     name: "Strength",
@@ -47,6 +48,8 @@ export default class Skillbox {
     this.titleElement = this.element.querySelector(".title");
     this.subtitleElement = this.element.querySelector(".subtitle");
     this.skill = Skills[type];
+
+    addTooltip(this.titleElement, "Very cool")
 
     this.titleElement.innerText = this.skill.name
 

@@ -2,6 +2,7 @@ import "./style.scss";
 import "./Addons";
 import Skillbox from "./Components/Skillbox";
 import { Inventory, ItemDto } from "./Components/Inventory";
+import "./Components/Tooltip";
 
 let uniqueId = 0;
 function getUniqueId() {

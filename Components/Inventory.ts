@@ -1,4 +1,5 @@
 import { ObjectMap, htmlToElement } from "../Utils"
+import {addTooltip} from "./Tooltip";
 
 interface ItemType {
   name: string,
@@ -27,7 +28,7 @@ const ItemTypes: ObjectMap<ItemType> = {
   "sword": {
     name: "Sword",
     weight: 20,
-    description: "To kill you enemies",
+    description: "To kill your enemies",
     unique: true,
     attributes: {
       damage: 10
@@ -118,7 +119,7 @@ export class Inventory {
     body.innerHTML = "";
     this.items.forEach(item => {
       let element = htmlToElement(`
-      <tr title="${item.itemType.description}" draggable="true">
+      <tr draggable="true">
         <td>${item.count}x</td> 
         <td>${item.itemType.name}</td>
         <td>${item.itemType.weight}w</td>
@@ -126,6 +127,8 @@ export class Inventory {
       element.addEventListener("click", () => this.selectItem(item));
       element.addEventListener("dragstart", (ev) => dragItem(item, this, ev));
       item.element = element;
+
+      addTooltip(element, item.itemType.description);
       if (this.selectedItem == item) {
         element.classList.add("selected")
       }
