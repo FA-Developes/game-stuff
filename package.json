@@ -1,8 +1,10 @@
 {
-  "name": "typescript",
-  "version": "0.0.0",
+  "name": "game_stuff",
+  "version": "1.0.0",
   "private": true,
+  "author": "FA_developes",
+  "license": "ISC",
   "dependencies": {
-    
-  },
+    "rxjs": "^6.5.2"
+  }
 }
