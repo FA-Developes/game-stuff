@@ -7,10 +7,10 @@ export class XHR {
   request(method: string, url: string, body?: any) {
     return new Promise((res, rej) => {
       let xhr = new XMLHttpRequest();
+      xhr.open(method, this.baseUrl + url);
       for(let key in this.headers) {
         xhr.setRequestHeader(key, this.headers[key])
       }
-      xhr.open(method, this.baseUrl + url);
       xhr.onload = () => xhr.status < 300? res(xhr.response) : rej(xhr.response);
       xhr.onerror = (e) => rej(e);
       if(body) {
@@ -26,11 +26,12 @@ export class XHR {
   }
 
   post(url:string, body: any) {
-    return this.request("GET",url, body);
+    return this.request("POST",url, body);
   }
 }
 
 export const apiXHR = new XHR("https://test-app-fa.herokuapp.com/")
+
 export type ObjectMap<T> = {[name: string]: T};
 
 export function htmlToElement(html: string): HTMLElement {
@@ -51,6 +52,7 @@ export function buildForm(content: string, submitCb: (input:any) => void) {
     let formdata = new FormData(form);
     let obj = {};
     formdata.forEach(((value, key) => obj[key] = value))
-
+    submitCb(obj);
   }
+  return form;
 }

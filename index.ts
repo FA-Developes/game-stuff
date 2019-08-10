@@ -1,4 +1,5 @@
 import "./style.scss";
+import "./Components/Auth";
 import "./Addons";
 import Skillbox from "./Components/Skillbox";
 import { Inventory, ItemDto } from "./Components/Inventory";
