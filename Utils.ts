@@ -11,7 +11,7 @@ export class XHR {
       for(let key in this.headers) {
         xhr.setRequestHeader(key, this.headers[key])
       }
-      xhr.onload = () => xhr.status < 300? res(xhr.response) : rej(xhr.response);
+      xhr.onload = () => xhr.status < 300? res(xhr.response) : rej(JSON.parse(xhr.response));
       xhr.onerror = (e) => rej(e);
       if(body) {
         xhr.send(JSON.stringify(body));
